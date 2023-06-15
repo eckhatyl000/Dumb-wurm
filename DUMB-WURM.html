@@ -1,38 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cocaine Wurm</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="Wurm">
-        <h1>Wurm</h1>
-        <div class="Drugs">
-            <ul>
-                <li><a href="#">Firefly Powder</a></li>
-                <li><a href="#">Dream Root</a></li>
-                <li><a href="#">Mindbender</a></li>
-                <li><a href="#">Shadowstep</a></li>
-                <li><a href="#">Bliss</a></li>
-                <li><a href="#">Serenity</a></li>
-                <li><a href="#">Crimson</a></li>
-                <li><a href="#">Blackout</a></li>
-            </ul>
-        </div>
-    </div>
+<html>
 
-    <script src="scripts.js"></script>
+<body>
+    <form id="form">
+        <label for="objectType">Object Type:</label><br>
+        <input type="text" id="objectType" name="objectType"><br>
+        <label for="objectNum">Number of Objects:</label><br>
+        <input type="number" id="objectNum" name="objectNum"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <div id="container">
+        <div id="result"></div>
+    </div>
 </body>
 
-
-
-
-
-
-
-
-
-
 </html>
+
