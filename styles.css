@@ -23,7 +23,7 @@ input[type="number"] {
 input[type="submit"] {
     padding: 5px 10px;
     background-color: #4CAF50;
-    color: white;
+    color: rgb(153, 119, 119);
     border: none;
     cursor: pointer;
 }

@@ -1,25 +1,25 @@
 let objectEffects = {
-    "Firefly-Powder-Effects": {
+    "Firefly-Powder": {
         good: ["Dexterity increase + 1", "advantage on dex saving throws + 1 turn", "Movement speed increase + 1"],
         bad: ["Cardiac arrest take 2 dmg per turn", "Blurry senses blindsight decreases by 0.5ft", "Shaky wurm + to hit decrease by 0.5"]
     },
-    "Dreamroot-Effects": {
+    "Dreamroot": {
         good: ["Good Effect 2-1", "Good Effect 2-2", "Good Effect 2-3"],
         bad: ["Bad Effect 2-1", "Bad Effect 2-2", "Bad Effect 2-3"]
     },
-    "Bloodstain-Effects": {
+    "Bloodstain": {
         good: ["Good Effect 2-1", "Good Effect 2-2", "Good Effect 2-3"],
         bad: ["Bad Effect 2-1", "Bad Effect 2-2", "Bad Effect 2-3"]
     },
-    "Mindbender-Effects": {
+    "Mindbender": {
         good: ["Good Effect 2-1", "Good Effect 2-2", "Good Effect 2-3"],
         bad: ["Bad Effect 2-1", "Bad Effect 2-2", "Bad Effect 2-3"]
     },
-    "Shadowstep-Effects": {
+    "Shadowstep": {
         good: ["Good Effect 2-1", "Good Effect 2-2", "Good Effect 2-3"],
         bad: ["Bad Effect 2-1", "Bad Effect 2-2", "Bad Effect 2-3"]
     },
-    "Bliss-Effects": {
+    "Bliss": {
         good: ["Good Effect 2-1", "Good Effect 2-2", "Good Effect 2-3"],
         bad: ["Bad Effect 2-1", "Bad Effect 2-2", "Bad Effect 2-3"]
     },
