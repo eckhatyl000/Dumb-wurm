@@ -45,8 +45,19 @@ document.getElementById('form').addEventListener('submit', function (event) {
 
         results += `<div class="result-box">`;
         results += `<div class="object-title">Results for ${objectType}</div>`;
-        results += `<div class="good-effects">Good Effects: ${result.goodEffectsResult.join(', ')}</div>`;
-        results += `<div class="bad-effects">Bad Effects: ${result.badEffectsResult.join(', ')}</div>`;
+        
+        if (result.goodEffectsResult.length > 0) {
+            results += `<div class="effects-title">Good Effects:</div>`;
+            results += `<div class="effect">Occurrences: ${result.goodEffectsResult.length}</div>`;
+            results += `<div class="effect-list">${result.goodEffectsResult.join(', ')}</div>`;
+        }
+
+        if (result.badEffectsResult.length > 0) {
+            results += `<div class="effects-title">Bad Effects:</div>`;
+            results += `<div class="effect">Occurrences: ${result.badEffectsResult.length}</div>`;
+            results += `<div class="effect-list">${result.badEffectsResult.join(', ')}</div>`;
+        }
+
         results += `<div class="damage">Damage: ${result.damage}</div>`;
         results += `<div class="effect-count">Good Effects Happen ${result.goodEffectsResult.length} time(s), Bad Effects Happen ${result.badEffectsResult.length} time(s)</div>`;
         results += `</div>`;
