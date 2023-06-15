@@ -43,8 +43,13 @@ document.getElementById('form').addEventListener('submit', function (event) {
 
         let result = calculateEffects(objectType, objectNum, cumulativeObjectNum);
 
-        results += `Results for ${objectType}: Good Effects: ${result.goodEffectsResult.join(', ')}, Bad Effects: ${result.badEffectsResult.join(', ')}, Damage: ${result.damage} <br>`;
-        results += `Good Effects Happen ${result.goodEffectsResult.length} time(s), Bad Effects Happen ${result.badEffectsResult.length} time(s) <br>`;
+        results += `<div class="result-box">`;
+        results += `<div class="object-title">Results for ${objectType}</div>`;
+        results += `<div class="good-effects">Good Effects: ${result.goodEffectsResult.join(', ')}</div>`;
+        results += `<div class="bad-effects">Bad Effects: ${result.badEffectsResult.join(', ')}</div>`;
+        results += `<div class="damage">Damage: ${result.damage}</div>`;
+        results += `<div class="effect-count">Good Effects Happen ${result.goodEffectsResult.length} time(s), Bad Effects Happen ${result.badEffectsResult.length} time(s)</div>`;
+        results += `</div>`;
     }
 
     document.getElementById('result').innerHTML = results;
