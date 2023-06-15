@@ -45,7 +45,7 @@ document.getElementById('form').addEventListener('submit', function (event) {
 
         results += `<div class="result-box">`;
         results += `<div class="object-title">Results for ${objectType}</div>`;
-        
+
         if (result.goodEffectsResult.length > 0) {
             results += `<div class="effects-title">Good Effects:</div>`;
             results += `<div class="effect">Occurrences: ${result.goodEffectsResult.length}</div>`;
@@ -78,6 +78,9 @@ function calculateEffects(objectType, objectNum) {
         let baseGoodBadEffectPercentage = 0.25;
         let baseDamagePercentage = 0.50;
 
+        let goodEffectsCount = {};
+        let badEffectsCount = {};
+
         for (let i = 0; i < objectNum; i++) {
             let goodBadEffectChance = Math.min(baseGoodBadEffectPercentage + i * 0.01, 1);
             let damageChance = Math.min(baseDamagePercentage + i * 0.01, 1);
@@ -90,11 +93,13 @@ function calculateEffects(objectType, objectNum) {
                 if (!goodEffectsResult.includes(chosenGoodEffect)) {
                     goodEffectsResult.push(chosenGoodEffect);
                 }
+                goodEffectsCount[chosenGoodEffect] = (goodEffectsCount[chosenGoodEffect] || 0) + 1;
 
                 let chosenBadEffect = badEffectsArray[Math.floor(Math.random() * badEffectsArray.length)];
                 if (!badEffectsResult.includes(chosenBadEffect)) {
                     badEffectsResult.push(chosenBadEffect);
                 }
+                badEffectsCount[chosenBadEffect] = (badEffectsCount[chosenBadEffect] || 0) + 1;
             }
 
             if (randDamage < damageChance) {
@@ -102,10 +107,23 @@ function calculateEffects(objectType, objectNum) {
             }
         }
 
-        return { goodEffectsResult, badEffectsResult, damage };
+        return { 
+            goodEffectsResult, 
+            badEffectsResult, 
+            damage,
+            goodEffectsCount: convertCountObjectToArray(goodEffectsCount),
+            badEffectsCount: convertCountObjectToArray(badEffectsCount)
+        };
     } else {
         console.log(`Object type '${objectType}' not found.`);
-        return { goodEffectsResult: [], badEffectsResult: [], damage: 0 };
+        return { 
+            goodEffectsResult: [], 
+            badEffectsResult: [], 
+            damage: 0, 
+            goodEffectsCount: [],
+            badEffectsCount: []
+        
+        };
     }
 }
 
