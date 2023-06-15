@@ -32,6 +32,35 @@ input[type="submit"] {
     margin-bottom: 10px;
 }
 
+.results {
+    margin-top: 20px;
+}
+
+.results .object-result {
+    margin-bottom: 10px;
+}
+
+.results .object-title {
+    font-weight: bold;
+}
+
+.results .good-effects,
+.results .bad-effects {
+    margin-top: 5px;
+}
+
+.results .good-effects:before,
+.results .bad-effects:before {
+    content: "Effects: ";
+    font-weight: bold;
+}
+
+.results .damage {
+    margin-top: 5px;
+    color: red;
+    font-weight: bold;
+}
+
 #effects {
     font-weight: bold;
 }
