@@ -1,26 +1,54 @@
 let objectEffects = {
-    "Object1": {
-        good: ["Good Effect 1-1", "Good Effect 1-2", "Good Effect 1-3"],
-        bad: ["Bad Effect 1-1", "Bad Effect 1-2", "Bad Effect 1-3"]
+    "Firefly-Powder-Effects": {
+        good: ["Dexterity increase + 1", "advantage on dex saving throws + 1 turn", "Movement speed increase + 1"],
+        bad: ["Cardiac arrest take 2 dmg per turn", "Blurry senses blindsight decreases by 0.5ft", "Shaky wurm + to hit decrease by 0.5"]
     },
-    "Object2": {
+    "Dreamroot-Effects": {
         good: ["Good Effect 2-1", "Good Effect 2-2", "Good Effect 2-3"],
         bad: ["Bad Effect 2-1", "Bad Effect 2-2", "Bad Effect 2-3"]
     },
-    // and so on for each object type...
+    "Bloodstain-Effects": {
+        good: ["Good Effect 2-1", "Good Effect 2-2", "Good Effect 2-3"],
+        bad: ["Bad Effect 2-1", "Bad Effect 2-2", "Bad Effect 2-3"]
+    },
+    "Mindbender-Effects": {
+        good: ["Good Effect 2-1", "Good Effect 2-2", "Good Effect 2-3"],
+        bad: ["Bad Effect 2-1", "Bad Effect 2-2", "Bad Effect 2-3"]
+    },
+    "Shadowstep-Effects": {
+        good: ["Good Effect 2-1", "Good Effect 2-2", "Good Effect 2-3"],
+        bad: ["Bad Effect 2-1", "Bad Effect 2-2", "Bad Effect 2-3"]
+    },
+    "Bliss-Effects": {
+        good: ["Good Effect 2-1", "Good Effect 2-2", "Good Effect 2-3"],
+        bad: ["Bad Effect 2-1", "Bad Effect 2-2", "Bad Effect 2-3"]
+    },
 };
 
 
 document.getElementById('form').addEventListener('submit', function (event) {
     event.preventDefault(); 
 
-    let objectType = document.getElementById('objectType').value;
-    let objectNum = document.getElementById('objectNum').value;
+    let results = '';
 
-    let results = calculateEffects(objectType, objectNum);
+    let objectTypes = ["Firefly-Powder", "Dreamroot", "Bloodstain", "Mindbender", "Shadowstep", "Bliss"]; 
+    let objectNums = ["Firefly-Powder", "Dreamroot", "Bloodstain", "Mindbender", "Shadowstep", "Bliss"]; 
 
-    document.getElementById('result').innerHTML = `Good Effects: ${results.goodEffectsResult.join(', ')}, Bad Effects: ${results.badEffectsResult.join(', ')}, Damage: ${results.damage}`;
+    let cumulativeObjectNum = 0;
 
+    for (let i = 0; i < objectTypes.length; i++) {
+        let objectType = document.getElementById(objectTypes[i]).value;
+        let objectNum = parseInt(document.getElementById(objectNums[i]).value);
+
+        cumulativeObjectNum += objectNum;
+
+        let result = calculateEffects(objectType, objectNum, cumulativeObjectNum);
+
+        results += `Results for ${objectType}: Good Effects: ${result.goodEffectsResult.join(', ')}, Bad Effects: ${result.badEffectsResult.join(', ')}, Damage: ${result.damage} <br>`;
+    }
+
+    document.getElementById('result').innerHTML = results;
+});
 
 function calculateEffects(objectType, objectNum) {
     
