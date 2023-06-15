@@ -116,9 +116,7 @@ function calculateEffects(objectType, objectNum) {
                 }
                 badEffectsCount[chosenBadEffect] = (badEffectsCount[chosenBadEffect] || 0) + 1;
             }
-            if (randDamage < damageChance) {
-                dmage += 0.05;
-            }
+           
         }
         return { 
             goodEffectsResult, 
