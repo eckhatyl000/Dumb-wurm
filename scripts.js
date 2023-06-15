@@ -103,10 +103,23 @@ function calculateEffects(objectType, objectNum) {
             }
 
             if (randDamage < damageChance) {
-                damage += 1;
+                damage += 0.01;
             }
         }
+        for (let i = 0; i < objectNum; i++) {
+            let randBad = Math.random();
 
+            if (randBad < baseGoodBadEffectPercentage) {
+                let chosenBadEffect = badEffectsArray[Math.floor(Math.random() * badEffectsArray.length)];
+                if (!badEffectsResult.includes(chosenBadEffect)) {
+                    badEffectsResult.push(chosenBadEffect);
+                }
+                badEffectsCount[chosenBadEffect] = (badEffectsCount[chosenBadEffect] || 0) + 1;
+            }
+            if (randDamage < damageChance) {
+                dmage += 0.05;
+            }
+        }
         return { 
             goodEffectsResult, 
             badEffectsResult, 
