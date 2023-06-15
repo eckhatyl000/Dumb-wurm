@@ -127,4 +127,11 @@ function calculateEffects(objectType, objectNum) {
     }
 }
 
+function convertCountObjectToArray(countObject) {
+    let countArray = [];
+    for (let effect in countObject) {
+        countArray.push({ effect, count: countObject[effect] });
+    }
+    return countArray;
+}
 
