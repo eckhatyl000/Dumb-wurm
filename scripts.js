@@ -22,22 +22,21 @@ let objectEffects = {
     "Bliss": {
         good: ["Good Effect 2-1", "Good Effect 2-2", "Good Effect 2-3"],
         bad: ["Bad Effect 2-1", "Bad Effect 2-2", "Bad Effect 2-3"]
-    },
+    }
 };
 
-
 document.getElementById('form').addEventListener('submit', function (event) {
-    event.preventDefault(); 
+    event.preventDefault();
 
     let results = '';
 
-    let objectTypes = ["Firefly-Powder", "Dreamroot", "Bloodstain", "Mindbender", "Shadowstep", "Bliss"]; 
-    let objectNums = ["Firefly-Powder", "Dreamroot", "Bloodstain", "Mindbender", "Shadowstep", "Bliss"]; 
+    let objectTypes = ["Firefly-Powder", "Dreamroot", "Bloodstain", "Mindbender", "Shadowstep", "Bliss"];
+    let objectNums = ["Firefly-Powder", "Dreamroot", "Bloodstain", "Mindbender", "Shadowstep", "Bliss"];
 
     let cumulativeObjectNum = 0;
 
     for (let i = 0; i < objectTypes.length; i++) {
-        let objectType = document.getElementById(objectTypes[i]).value;
+        let objectType = objectTypes[i];
         let objectNum = parseInt(document.getElementById(objectNums[i]).value);
 
         cumulativeObjectNum += objectNum;
@@ -51,41 +50,46 @@ document.getElementById('form').addEventListener('submit', function (event) {
 });
 
 function calculateEffects(objectType, objectNum) {
-    
-    let goodEffectsArray = objectEffects[objectType].good;
-    let badEffectsArray = objectEffects[objectType].bad;
+    if (objectEffects[objectType]) {
+        let goodEffectsArray = objectEffects[objectType].good;
+        let badEffectsArray = objectEffects[objectType].bad;
 
-    let goodEffectsResult = [];
-    let badEffectsResult = [];
-    let damage = 0;
+        let goodEffectsResult = [];
+        let badEffectsResult = [];
+        let damage = 0;
 
-    let baseGoodBadEffectPercentage = 0.25;
-    let baseDamagePercentage = 0.50;
+        let baseGoodBadEffectPercentage = 0.25;
+        let baseDamagePercentage = 0.50;
 
-    for (let i = 0; i < objectNum; i++) {
-        let goodBadEffectChance = Math.min(baseGoodBadEffectPercentage + (i * 0.01), 1);
-        let damageChance = Math.min(baseDamagePercentage + (i * 0.01), 1);
+        for (let i = 0; i < objectNum; i++) {
+            let goodBadEffectChance = Math.min(baseGoodBadEffectPercentage + i * 0.01, 1);
+            let damageChance = Math.min(baseDamagePercentage + i * 0.01, 1);
 
-        let randGoodBad = Math.random();
-        let randDamage = Math.random();
+            let randGoodBad = Math.random();
+            let randDamage = Math.random();
 
-        if (randGoodBad < goodBadEffectChance) {
-            let chosenGoodEffect = goodEffectsArray[Math.floor(Math.random() * goodEffectsArray.length)];
-            if (!goodEffectsResult.includes(chosenGoodEffect)) {
-                goodEffectsResult.push(chosenGoodEffect);
+            if (randGoodBad < goodBadEffectChance) {
+                let chosenGoodEffect = goodEffectsArray[Math.floor(Math.random() * goodEffectsArray.length)];
+                if (!goodEffectsResult.includes(chosenGoodEffect)) {
+                    goodEffectsResult.push(chosenGoodEffect);
+                }
+
+                let chosenBadEffect = badEffectsArray[Math.floor(Math.random() * badEffectsArray.length)];
+                if (!badEffectsResult.includes(chosenBadEffect)) {
+                    badEffectsResult.push(chosenBadEffect);
+                }
             }
 
-            let chosenBadEffect = badEffectsArray[Math.floor(Math.random() * badEffectsArray.length)];
-            if (!badEffectsResult.includes(chosenBadEffect)) {
-                badEffectsResult.push(chosenBadEffect);
+            if (randDamage < damageChance) {
+                damage += 1;
             }
         }
 
-        if (randDamage < damageChance) {
-            damage += 1;
-        }
+        return { goodEffectsResult, badEffectsResult, damage };
+    } else {
+        console.log(`Object type '${objectType}' not found.`);
+        return { goodEffectsResult: [], badEffectsResult: [], damage: 0 };
     }
-
-    return { goodEffectsResult, badEffectsResult, damage };
 }
+
 
